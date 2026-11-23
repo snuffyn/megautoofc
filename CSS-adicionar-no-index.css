@@ -1,0 +1,34 @@
+/* Fonte racing — colar no topo do client/src/index.css (ou usar o <link> no index.html) */
+@import url("https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Anton&display=swap");
+
+/* Faixa curva das palavras — colar logo abaixo da regra `.ed-ticker li:nth-child(even)` em client/src/index.css */
+.ed-marquee { position:relative; overflow:hidden; border-top:1px solid rgba(255,255,255,.12); }
+.ed-marquee svg { top:var(--ed-svg-top) !important; filter:drop-shadow(0 0 22px rgba(255,75,11,.35)); font-style:italic; } /* centraliza a curva dentro do palco (sobrescreve o top:50% do componente) */
+
+/* Linhas: imagem de produto em cada card — colar junto das regras `.ed-bay` em client/src/index.css */
+.ed-bay { position:relative; overflow:hidden; }
+.ed-bay::before { content:""; position:absolute; top:-40px; right:-40px; width:230px; height:230px; background:radial-gradient(circle,rgba(255,75,11,.20),transparent 66%); opacity:0; transition:opacity .35s ease; pointer-events:none; z-index:0; }
+.ed-bay:hover::before { opacity:1; }
+.ed-bay > *:not(.ed-bay-img) { position:relative; z-index:1; }
+.ed-bay-img { position:absolute; top:16px; right:16px; width:48%; max-width:150px; height:132px; object-fit:contain; object-position:right top; z-index:1; pointer-events:none; filter:drop-shadow(0 10px 16px rgba(0,0,0,.55)); transition:transform .35s ease, filter .35s ease; }
+.ed-bay:hover .ed-bay-img { transform:translateY(-6px) scale(1.07) rotate(-3deg); filter:drop-shadow(0 14px 22px rgba(255,75,11,.38)); }
+@media (max-width:640px){ .ed-bay-img { width:36%; max-width:110px; height:104px; top:12px; right:12px; } }
+
+/* Faixa curva estilo racing — colar junto das regras `.ed-marquee` em client/src/index.css */
+.ed-marquee svg text { font-style:italic; text-transform:uppercase; paint-order:stroke; stroke:#1a0600; stroke-width:5px; stroke-linejoin:round; }
+
+/* Localização — colar no fim de client/src/index.css */
+.ed-loc { display:grid; grid-template-columns:1fr; padding:0; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:rgba(255,255,255,.03); transition:border-color .3s ease, background .3s ease; }
+.ed-loc:hover { border-color:rgba(255,75,11,.5); background:rgba(255,75,11,.06); }
+.ed-loc-map { position:relative; min-height:260px; background:#15151a url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20300%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22600%22%20height%3D%22300%22%20fill%3D%22%2315151a%22/%3E%3Cg%20stroke%3D%22%2326262d%22%20stroke-width%3D%2216%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M-20%2C230%20L220%2C170%20L420%2C195%20L640%2C110%22/%3E%3Cpath%20d%3D%22M130%2C-20%20L170%2C320%22/%3E%3Cpath%20d%3D%22M370%2C-20%20L335%2C320%22/%3E%3Cpath%20d%3D%22M-20%2C90%20L640%2C70%22/%3E%3C/g%3E%3Cg%20stroke%3D%22%2333333b%22%20stroke-width%3D%225%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M60%2C-20%20L88%2C320%22/%3E%3Cpath%20d%3D%22M480%2C-20%20L520%2C320%22/%3E%3Cpath%20d%3D%22M-20%2C160%20L640%2C150%22/%3E%3Cpath%20d%3D%22M-20%2C270%20L640%2C250%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22140%22%20r%3D%2264%22%20fill%3D%22rgba%28255%2C75%2C11%2C.12%29%22%20stroke%3D%22rgba%28255%2C75%2C11%2C.45%29%22/%3E%3C/svg%3E") center/cover no-repeat; }
+.ed-loc-map::after { content:""; position:absolute; left:50%; top:47%; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; box-shadow:0 0 0 0 rgba(255,75,11,.55); animation:edping 2.2s ease-out infinite; }
+@keyframes edping { to { box-shadow:0 0 0 46px rgba(255,75,11,0); } }
+.ed-loc-tag { position:absolute; left:50%; top:47%; transform:translate(-50%,-100%); display:flex; flex-direction:column; align-items:center; z-index:2; }
+.ed-loc-tag b { background:#ff4b0b; color:#fff; font-family:"Racing Sans One",Anton,Impact,sans-serif; font-style:italic; font-weight:400; letter-spacing:.04em; padding:7px 16px; border-radius:999px; font-size:18px; box-shadow:0 10px 28px rgba(255,75,11,.5); }
+.ed-loc-tag i { width:3px; height:20px; background:#ff4b0b; }
+.ed-loc-info { display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding:22px 24px; border-top:1px solid rgba(255,255,255,.12); }
+.ed-loc-pin { display:grid; place-items:center; width:52px; height:52px; border-radius:50%; background:#ff4b0b; color:#fff; flex:none; }
+.ed-loc-text { display:flex; flex-direction:column; gap:2px; flex:1; min-width:180px; color:#f7f3ee; }
+.ed-loc-text small { color:#9b958f; }
+.ed-loc .ed-more { display:inline-flex; align-items:center; gap:6px; color:#ff4b0b; font-weight:700; }
+@media (prefers-reduced-motion:reduce){ .ed-loc-map::after { animation:none; } }
